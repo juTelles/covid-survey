@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Covid-19 Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div id="header-div">
+                <h1 id="title">Covid-19 survey</h1>
+                <p id="description">Tell us your experiences with this dangerous virus</p>
+            </div>
+        </header>
+
+        <main>
+            <section id="form-section">
+                <form id="survey-form">
+                    <div id="form-div" class="form">
+
+                        <!-- START of line fields - the 1º form field group -->
+                        <div class="form-field-group">
+
+                            <div id="name-field" class="form-field">
+                                <label for="name" id="name-label">Name:</label>
+                                <input id="name" class="line" type="text" placeholder="Enter your name here" autofocus
+                                    required />
+                            </div>
+
+                            <div id="email-field" class="form-field">
+                                <label for="email" id="email-label">Email:</label>
+                                <input id="email" class="line" type="email" placeholder="your@email.com" required />
+                            </div>
+
+                            <div id="age-field" class="form-field">
+                                <label for="number" id="number-label">Age:</label>
+                                <input id="number" class="line" type="number" placeholder="Your age in numbers" min="1"
+                                    max="100" />
+                            </div>
+
+                            <div id="dropdown" class="form-field">
+                                <p class="dropdown-label">Region:</p>
+                                <div class="custom-select" style="width:200px;">
+                                    <select id="dropdown" class="line">
+                                        <option class="first-dropdown-option" disabled selected value>Where do you live:
+                                        </option>
+                                        <option value="africa">Africa</option>
+                                        <option value="asia">Asia</option>
+                                        <option value="central-america">Central America</option>
+                                        <option value="europe">Europe</option>
+                                        <option value="north-america">North America</option>
+                                        <option value="oceania">Oceania</option>
+                                        <option value="south-america">South America</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END of the 1º form field group -->
+
+                        <!-- START of radio buttons - 2º form field group  -->
+                        <div id="radio-fields" class="form-field-group">
+                            <p>What is your situation in relation to the virus COVID-19?</p>
+                            <label for="not-infected">
+                                <input type="radio" value="not-infected" id="not-infected" name="covid-question" />
+                                <span class="selected-radio"></span>
+                                You haven't been infected
+                            </label>
+                            <label for="infected">
+                                <input type="radio" value="infected" id="infected" name="covid-question" />
+                                <span class="selected-radio"></span>
+                                You are infected
+                            </label>
+                            <label for="was-infected">
+                                <input type="radio" value="was-infected" id="was-infected" name="covid-question" />
+                                <span class="selected-radio"></span>
+                                You have been infected
+                            </label>
+                        </div>
+                        <!-- end of radio buttons - 2º form field group -->
+
+                        <!-- START of checkboxs - 3º form field group -->
+                        <div id="check-fields" class="form-field-group">
+                            <p>In which of these safety measures have you engaged in?</p>
+                            <label for="masks">
+                                <input type="checkbox" id="masks" value="masks" name="measures" />
+                                <span class="checkmark"></span>
+                                The use of masks
+                            </label>
+                            <label for="gloves">
+                                <input type="checkbox" id="gloves" value="gloves" name="measures" />
+                                <span class="checkmark"></span>
+                                The use of gloves
+                            </label>
+                            <label for="hands">
+                                <input type="checkbox" id="hands" value="hands" name="measures" />
+                                <span class="checkmark"></span>
+                                Washing hands regularly
+                            </label>
+                            <label for="face">
+                                <input type="checkbox" id="face" value="face" name="measures" />
+                                <span class="checkmark"></span>
+                                Avoid touching your face
+                            </label>
+                            <label for="one-meter">
+                                <input type="checkbox" id="one-meter" value="one-meter" name="measures" />
+                                <span class="checkmark"></span>
+                                Remain one meter from anyone
+                            </label>
+                            <label for="partial-isolation">
+                                <input type="checkbox" id="partial-isolation" value="partial-isolation"
+                                    name="measures" />
+                                <span class="checkmark"></span>
+                                Partial social isolation
+                            </label>
+                            <label for="total-isolation">
+                                <input type="checkbox" id="total-isolation" value="total-isolation" name="measures" />
+                                <span class="checkmark"></span>
+                                Complete social isolation
+                            </label>
+                            <label for="other">
+                                <input type="checkbox" id="other" value="other" name="measures" />
+                                <span class="checkmark"></span>
+                                Other
+                        </div>
+                        <!-- END of checkboxs - 3º form field group -->
+
+                        <!-- START of text-area 4º form field group -->
+                        <div id="text-area-field" class="form-field-group">
+                            <p for="experiences">Please share your experiences in this challenging times:</p>
+                            <textarea id="experiences">Add your experiences here...</textarea>
+                        </div>
+                        <!-- END of text-area 4º form field group -->
+
+                        <div id="button-div">
+                            <button id="submit">Submit
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="./script.babel.js"></script>
+</body>
+
+</html>
