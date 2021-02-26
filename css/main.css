@@ -250,6 +250,7 @@ button {
   color: white;
   font-size: 6vw;
   font-weight: 700;
+    margin: 0 auto;
 }
 button:hover {
   background-color: #e5507f;
