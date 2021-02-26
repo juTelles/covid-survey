@@ -1,111 +1,68 @@
-window.addEventListener('load', start);
+function customDropdown() {
+  const originalDropdownDiv = document.getElementById('dropdown-internal-div');
+  const originalSelect = originalDropdownDiv.getElementsByTagName('select')[0];
+  const originalSelectLength = originalSelect.length;
 
-const dropdownDiv = document.getElementById('dropdown-internal-div');
-const dropdownOptions = dropdownDiv.getElementsByTagName('select')[0];
-const menuButton = document.querySelectorAll('menu-button');
+  const newSelectedOptionDiv = document.createElement('DIV'); //A
+  newSelectedOptionDiv.setAttribute('class', 'selected-option');
+  newSelectedOptionDiv.innerHTML =
+    originalSelect.options[originalSelect.selectedIndex].innerHTML;
+  originalDropdownDiv.appendChild(newSelectedOptionDiv);
 
-function start() {
-  dropdownDiv.addEventListener('load', customDropdown);
-  // menuButton.addEventListener('click', navMenuFuncionality);
+  const newOptionDiv = document.createElement('DIV'); //B
+  newOptionDiv.setAttribute('class', 'option hide-option');
 
-  document.addEventListener('click', closeAllSelect);
-}
-
-const customDropdown = () => {
-console.log(dropdownOptions.options[0]);
-let dropdownLength = dropdownOptions.options.length;
-for (let index = 0; index < dropdownLength; index++) {
-  const option = dropdownOptions.options[index];
-
-  selectedOptionDiv = document.createElement('div');
-  selectedOptionDiv.setAttribute('class', 'option-selected');
-  selectedOptionDiv.innerHTML = dropdownOptions.options[dropdownOptions.selectedIndex].innerHTML
-  selectedOptionDiv = document.createElement('div');
-  dropdownDiv.appendChild(selectedOptionDiv);
-}
-};
-
-var x, i, j, l, ll, selElmnt, a, b, c;
-/* Look for any elements with the class "custom-select": */
-x = document.getElementsByClassName('custom-select');
-l = x.length;
-for (i = 0; i < l; i++) {
-  selElmnt = x[i].getElementsByTagName('select')[0];
-  ll = selElmnt.length;
-  /* For each element, create a new DIV that will act as the selected item: */
-  a = document.createElement('DIV');
-  a.setAttribute('class', 'select-selected');
-  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-  x[i].appendChild(a);
-  /* For each element, create a new DIV that will contain the option list: */
-  b = document.createElement('DIV');
-  b.setAttribute('class', 'select-items select-hide');
-  for (j = 1; j < ll; j++) {
-    /* For each option in the original select element,
-       create a new DIV that will act as an option item: */
-    c = document.createElement('DIV');
-    c.innerHTML = selElmnt.options[j].innerHTML;
-    c.addEventListener('click', function (e) {
-      /* When an item is clicked, update the original select box,
-           and the selected item: */
-      var y, i, k, s, h, sl, yl;
-      s = this.parentNode.parentNode.getElementsByTagName('select')[0];
-      sl = s.length;
-      h = this.parentNode.previousSibling;
-      for (i = 0; i < sl; i++) {
-        if (s.options[i].innerHTML == this.innerHTML) {
-          s.selectedIndex = i;
-          h.innerHTML = this.innerHTML;
-          y = this.parentNode.getElementsByClassName('same-as-selected');
-          yl = y.length;
-          for (k = 0; k < yl; k++) {
-            y[k].removeAttribute('class');
+  for (let index = 1; index < originalSelectLength; index++) {
+    const newOptionItem = document.createElement('DIV'); //C
+    newOptionItem.innerHTML = originalSelect.options[index].innerHTML;
+    newOptionItem.addEventListener('click', function (e) {
+      const newSelect = this.parentNode.previousSibling;
+      for (let i = 0; i < originalSelect.length; i++) {
+        if (originalSelect.options[i].innerHTML == this.innerHTML) {
+          originalSelect.selectedIndex = i;
+          newSelect.innerHTML = this.innerHTML;
+          const otherSelected = this.parentNode.getElementsByClassName(
+            'other-selected'
+          );
+          for (let x = 0; x < otherSelected.length; x++) {
+            otherSelected[x].removeAttribute('class');
           }
-          this.setAttribute('class', 'same-as-selected');
+          this.setAttribute('class', 'other-selected');
           break;
         }
       }
-      h.click();
+      newSelect.click();
     });
-    b.appendChild(c);
+    newOptionDiv.appendChild(newOptionItem);
   }
-  x[i].appendChild(b);
-  a.addEventListener('click', function (e) {
-    /* When the select box is clicked, close any other select boxes,
-       and open/close the current select box: */
+  originalDropdownDiv.appendChild(newOptionDiv);
+  newSelectedOptionDiv.addEventListener('click', function (e) {
     e.stopPropagation();
-    closeAllSelect(this);
-    this.nextSibling.classList.toggle('select-hide');
-    this.classList.toggle('select-arrow-active');
+    closeDropdown(this);
+    this.nextSibling.classList.toggle('hide-option');
+    this.classList.toggle('selected-active');
   });
 }
 
-function closeAllSelect(elmnt) {
-  /* A function that will close all select boxes in the document,
-     except the current select box: */
-  var x,
-    y,
-    i,
-    xl,
-    yl,
-    arrNo = [];
-  x = document.getElementsByClassName('select-items');
-  y = document.getElementsByClassName('select-selected');
-  xl = x.length;
-  yl = y.length;
-  for (i = 0; i < yl; i++) {
-    if (elmnt == y[i]) {
-      arrNo.push(i);
+function closeDropdown(clicked) {
+  const allNewOptions = [];
+  const newOptionDiv = document.getElementsByClassName('option');
+  const newSelectedOptionDiv = document.getElementsByClassName(
+    'selected-option'
+  );
+  for (index = 0; index < newSelectedOptionDiv.length; index++) {
+    if (clicked == newSelectedOptionDiv[index]) {
+      allNewOptions.push(index);
     } else {
-      y[i].classList.remove('select-arrow-active');
+      newSelectedOptionDiv[index].classList.remove('selected-active');
     }
   }
-  for (i = 0; i < xl; i++) {
-    if (arrNo.indexOf(i)) {
-      x[i].classList.add('select-hide');
+  for (i = 0; i < newOptionDiv.length; i++) {
+    if (allNewOptions.indexOf(i)) {
+      newOptionDiv[i].classList.add('hide-option');
     }
   }
 }
 
-/* If the user clicks anywhere outside the select box,
-   then close all select boxes: */
+window.addEventListener('load', customDropdown);
+document.addEventListener('click', closeAllSelect);
