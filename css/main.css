@@ -300,3 +300,8 @@ button:hover {
   line-height: 1em;
 }
 }
+@media (min-width: 1175px) {
+#form-div {
+  max-width: 800px;
+}
+}
