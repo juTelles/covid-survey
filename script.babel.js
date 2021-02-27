@@ -65,4 +65,4 @@ function closeDropdown(clicked) {
 }
 
 window.addEventListener('load', customDropdown);
-document.addEventListener('click', closeAllSelect);
+document.addEventListener('click', closeDropdown);
