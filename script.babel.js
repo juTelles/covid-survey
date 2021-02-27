@@ -44,14 +44,14 @@ function customDropdown() {
   });
 }
 
-function closeDropdown(clicked) {
+function closeDropdown(e) {
   const allNewOptions = [];
   const newOptionDiv = document.getElementsByClassName('option');
   const newSelectedOptionDiv = document.getElementsByClassName(
     'selected-option'
   );
   for (index = 0; index < newSelectedOptionDiv.length; index++) {
-    if (clicked == newSelectedOptionDiv[index]) {
+    if (e == newSelectedOptionDiv[index]) {
       allNewOptions.push(index);
     } else {
       newSelectedOptionDiv[index].classList.remove('selected-active');
@@ -65,4 +65,4 @@ function closeDropdown(clicked) {
 }
 
 window.addEventListener('load', customDropdown);
-document.addEventListener('click', closeAllSelect);
+document.addEventListener('click', closeDropdown);
